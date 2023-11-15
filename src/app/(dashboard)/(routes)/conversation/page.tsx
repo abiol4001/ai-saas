@@ -17,12 +17,15 @@ import Loader from '@/components/Loader'
 import { cn } from '@/lib/utils'
 import UserAvatar from '@/components/UserAvatar'
 import BotAvatar from '@/components/BotAvatar'
+import { useProModal } from '@/hooks/useProModal'
 
 type Props = {}
 
 const Conversation = (props: Props) => {
     const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([])
     const router = useRouter()
+    const proModal = useProModal()
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -48,8 +51,12 @@ const Conversation = (props: Props) => {
             setMessages((current) => [...current, userMessage, response.data])
             form.reset()
         } catch (error: any) {
+            if(error?.response?.status === 403) {
+                proModal.onOpen()
+            }
             console.log(error)
         } finally {
+            //helps to get the recent update to server components
             router.refresh()
         }
     }

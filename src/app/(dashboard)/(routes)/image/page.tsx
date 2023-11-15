@@ -17,11 +17,14 @@ import { cn } from '@/lib/utils'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Card, CardFooter } from '@/components/ui/card'
 import Image from 'next/image'
+import { useProModal } from '@/hooks/useProModal'
 
 type Props = {}
 
 const ImagePage = (props: Props) => {
     const router = useRouter()
+    const proModal = useProModal()
+    
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -46,6 +49,9 @@ const ImagePage = (props: Props) => {
             setImages(urls)
             form.reset()
         } catch (error: any) {
+            if (error?.response?.status === 403) {
+                proModal.onOpen()
+            }
             console.log(error)
         } finally {
             //helps to get the recent update to server components

@@ -14,12 +14,15 @@ import { ChatCompletionRequestMessage } from 'openai-edge'
 import { useState } from 'react'
 import Empty from '@/components/Empty'
 import Loader from '@/components/Loader'
+import { useProModal } from '@/hooks/useProModal'
 
 type Props = {}
 
 const MusicPage = (props: Props) => {
     const [music, setMusic] = useState<string>()
     const router = useRouter()
+    const proModal = useProModal()
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -38,6 +41,9 @@ const MusicPage = (props: Props) => {
             setMusic(response.data.audio)
             form.reset()
         } catch (error: any) {
+            if (error?.response?.status === 403) {
+                proModal.onOpen()
+            }
             console.log(error)
         } finally {
             //helps to get the recent update to server components
