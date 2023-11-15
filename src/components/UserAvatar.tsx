@@ -7,7 +7,7 @@ type Props = {}
 const UserAvatar = (props: Props) => {
 
     const { user } = useUser()
-    console.log(user)
+
   return (
     <Avatar className='h-8 w-8'>
           <AvatarImage className='p-1' src={user?.imageUrl} />

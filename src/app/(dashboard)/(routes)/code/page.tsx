@@ -51,7 +51,7 @@ const CodePage = (props: Props) => {
         } catch (error: any) {
             console.log(error)
         } finally {
-            form.reset()
+            //helps to get the recent update to server components
             router.refresh()
         }
     }

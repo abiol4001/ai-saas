@@ -50,7 +50,6 @@ const Conversation = (props: Props) => {
         } catch (error: any) {
             console.log(error)
         } finally {
-            form.reset()
             router.refresh()
         }
     }
