@@ -10,7 +10,7 @@ type Props = {
     isPro: boolean | undefined
 }
 
-const SubscriptionButton = ({isPro}: Props) => {
+const SubscriptionButton = ({ isPro }: Props) => {
 
     const [isLoading, setIsLoading] = useState(false)
 
@@ -26,12 +26,17 @@ const SubscriptionButton = ({isPro}: Props) => {
             setIsLoading(false)
         }
     }
-  return (
-    <Button variant={isPro ? "default" : "premium"} className='mt-2'>
-        {isPro ? "Manage Subscription" : "Upgrade to Pro"}
-        {!isPro && <Zap className='h-4 w-4 fill-white ml-2' />}
-    </Button>
-  )
+    return (
+        <Button
+            disabled={isLoading}
+            variant={isPro ? "default" : "premium"}
+            className='mt-2'
+            onClick={handleClick}
+            >
+            {isPro ? "Manage Subscription" : "Upgrade"}
+            {!isPro && <Zap className='h-4 w-4 fill-white ml-2' />}
+        </Button>
+    )
 }
 
 export default SubscriptionButton
