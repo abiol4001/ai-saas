@@ -15,6 +15,7 @@ import { useState } from 'react'
 import Empty from '@/components/Empty'
 import Loader from '@/components/Loader'
 import { useProModal } from '@/hooks/useProModal'
+import toast from 'react-hot-toast'
 
 type Props = {}
 
@@ -43,6 +44,9 @@ const MusicPage = (props: Props) => {
         } catch (error: any) {
             if (error?.response?.status === 403) {
                 proModal.onOpen()
+            }
+            else {
+                toast.error("Something went wrong")
             }
             console.log(error)
         } finally {

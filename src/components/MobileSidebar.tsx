@@ -7,10 +7,11 @@ import { Sheet, SheetContent, SheetTrigger } from './ui/sheet'
 import Sidebar from './Sidebar'
 
 type Props = {
-    apiLimitCount: number
+    apiLimitCount: number,
+    isPro: boolean | undefined
 }
 
-const MobileSidebar = ({ apiLimitCount = 0 }: Props) => {
+const MobileSidebar = ({ apiLimitCount = 0, isPro = false }: Props) => {
     const [isMounted, setIsMounted] = useState(false)
 
     useEffect(()=> {
@@ -29,7 +30,7 @@ const MobileSidebar = ({ apiLimitCount = 0 }: Props) => {
                 </Button>
             </SheetTrigger>
             <SheetContent side="left" className='p-0'>
-                <Sidebar apiLimitCount={apiLimitCount} />
+                <Sidebar apiLimitCount={apiLimitCount} isPro={isPro} />
             </SheetContent>
         </Sheet>
     )

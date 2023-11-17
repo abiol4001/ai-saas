@@ -9,7 +9,8 @@ import { usePathname } from "next/navigation"
 import FreeTrialCounter from "./FreeTrialCounter"
 
 type Props = {
-    apiLimitCount: number
+    apiLimitCount: number,
+    isPro: boolean | undefined
 }
 
 const montserrat = Montserrat({weight: "600", subsets: ["latin"]})
@@ -65,7 +66,7 @@ const routes = [
     },
 ]
 
-const Sidebar = ({ apiLimitCount = 0 }: Props) => {
+const Sidebar = ({ apiLimitCount = 0, isPro = false }: Props) => {
     const pathName = usePathname()
 
   return (
@@ -90,7 +91,7 @@ const Sidebar = ({ apiLimitCount = 0 }: Props) => {
                 ))}
             </div>
         </div>
-          <FreeTrialCounter apiLimitCount={apiLimitCount} />
+          <FreeTrialCounter apiLimitCount={apiLimitCount} isPro={isPro} />
     </div>
   )
 }

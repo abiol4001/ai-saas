@@ -56,7 +56,7 @@ const ProModal = (props: Props) => {
 
     const [isLoading, setIsLoading] = useState(false)
 
-    const handleClick = async () => {
+    const handleSubscribe = async () => {
         try {
             setIsLoading(true)
             const response = await axios.get("/api/stripe")
@@ -98,7 +98,7 @@ const ProModal = (props: Props) => {
                 </DialogDescription>
             </DialogHeader>
             <DialogFooter>
-                <Button disabled={isLoading} onClick={handleClick} className="w-full" variant="premium">
+                <Button disabled={isLoading} onClick={handleSubscribe} className="w-full" variant="premium">
                     Upgrade
                     <Zap className="h-4 w-4 fill-white ml-2" />
                 </Button>

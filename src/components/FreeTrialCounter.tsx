@@ -9,14 +9,17 @@ import { Zap } from "lucide-react"
 import { useProModal } from "@/hooks/useProModal"
 
 type Props = {
-    apiLimitCount: number
+    apiLimitCount: number,
+    isPro: boolean
 }
 
-const FreeTrialCounter = ({apiLimitCount = 0}: Props) => {
+const FreeTrialCounter = ({apiLimitCount = 0, isPro = false}: Props) => {
 
     const [isMounted, setIsMounted] = useState(false)
 
     const proModal = useProModal()
+
+
 
     useEffect(() => {
         setIsMounted(true)
@@ -25,6 +28,12 @@ const FreeTrialCounter = ({apiLimitCount = 0}: Props) => {
     if (!isMounted) {
         return null
     }
+
+    if(isPro) {
+        return null
+    }
+
+    console.log(isPro)
 
   return (
     <div className="px-3">
