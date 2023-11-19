@@ -11,8 +11,7 @@ type Props = {
 const DashboardLayout = async ({children}: Props) => {
 
   const apiLimitCount = await getApiLimit()
-  const isPro = await checkSubscription()
-
+  const {isPro} = await checkSubscription();
 
   return (
     <div className='h-full relative'>

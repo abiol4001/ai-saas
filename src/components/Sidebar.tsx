@@ -76,7 +76,7 @@ const Sidebar = ({ apiLimitCount = 0, isPro = false }: Props) => {
             <div className="relative w-8 h-8 mr-4">
                 {/* <Image src="/" fill alt="logo" /> */}
             </div>
-                  <p className={cn("font-bold text-2xl", montserrat.className)}>AI Saas</p>
+                  <p className={cn("font-bold text-2xl", montserrat.className)}>AIhub</p>
             </Link>
             <div>
                 {routes.map((route) => (

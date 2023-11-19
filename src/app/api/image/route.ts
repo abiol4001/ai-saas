@@ -10,7 +10,6 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-
 export async function POST(req: Request) {
   try {
     const { userId } = auth();
@@ -36,18 +35,17 @@ export async function POST(req: Request) {
     }
 
     const freeTrial = await checkApiLimit();
-const isPro = await checkSubscription();
+    const { isPro } = await checkSubscription();
 
-if (!freeTrial && !isPro) {
-  return new NextResponse("Free trial has expired", { status: 403 });
-}
+    if (!freeTrial && !isPro) {
+      return new NextResponse("Free trial has expired", { status: 403 });
+    }
 
     const response = await openai.createImage({
       prompt,
       n: parseInt(amount, 10),
       size: resolution,
     });
-
 
     const data = await response.json();
 

@@ -17,7 +17,7 @@ export async function POST(req: Request) {
       process.env.STRIPE_WEBHOOK_SECRET!
     );
 
-    console.log("EVENT-----------" + JSON.stringify(event));
+    // console.log("EVENT-----------" + JSON.stringify(event));
   } catch (error: any) {
     return new NextResponse(`WEB_HOOK_ERROR: ${error.message}`, {
       status: 400,
@@ -25,7 +25,7 @@ export async function POST(req: Request) {
   }
 
   const session = event.data.object as Stripe.Checkout.Session;
-  console.log("Session -------------" + JSON.stringify(session));
+//   console.log("Session -------------" + JSON.stringify(session));
 
   if (event.type === "checkout.session.completed") {
     const subscription = await stripe.subscriptions.retrieve(

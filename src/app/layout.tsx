@@ -9,7 +9,7 @@ import CrispProvider from '@/components/CrispProvider'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'AI Saas',
+  title: 'AIhub',
   description: 'You can only get the best',
 }
 

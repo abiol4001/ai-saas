@@ -8,13 +8,13 @@ type Props = {}
 const Navbar = async (props: Props) => {
 
   const apiLimitCount = await getApiLimit()
-  const isPro = await checkSubscription()
+  const { isPro } = await checkSubscription()
   return (
     <div className='flex items-center p-4 '>
       <MobileSidebar apiLimitCount={apiLimitCount} isPro={isPro} />
-        <div className='flex w-full justify-end'>
-            <UserButton afterSignOutUrl='/'/>
-        </div>
+      <div className='flex w-full justify-end'>
+        <UserButton afterSignOutUrl='/' />
+      </div>
     </div>
   )
 }

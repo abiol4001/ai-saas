@@ -9,7 +9,6 @@ const page = (props: Props) => {
       <div className="h-[100vh] bg-[#111827]">
           <LandingNavbar />
           <LandingHero />
-          {/* <LandingContent /> */}
       </div>
   )
 }
